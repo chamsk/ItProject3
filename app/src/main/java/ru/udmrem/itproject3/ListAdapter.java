@@ -1,5 +1,6 @@
 package ru.udmrem.itproject3;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +11,17 @@ import android.widget.TextView;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
+    public interface OnItemClick {
+        public void itemClick(int position);
+    }
 
 
     List<String> list;
+    OnItemClick onItemClick;
+
+    public ListAdapter(Context context) {
+        this.onItemClick = (OnItemClick) context;
+    }
 
 
 
@@ -29,7 +38,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
             @Override
             public void onClick(View v) {
                 Log.d("CLICK", String.valueOf(position));
-                
+                onItemClick.itemClick(position);
             }
         });
     }

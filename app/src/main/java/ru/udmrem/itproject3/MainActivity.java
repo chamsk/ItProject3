@@ -1,10 +1,15 @@
 package ru.udmrem.itproject3;
 
+import android.app.Fragment;
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListAdapter.OnItemClick{
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +25,23 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
 
 
+    }
+
+    void showDetail(int position){
+        Bundle bundle = new Bundle();
+        bundle.putInt("position",position);
+        DetailFragment detailFragment = new DetailFragment();
+        detailFragment.setArguments(bundle);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.container,detailFragment);
+        transaction.commit();
+    }
+
+
+    @Override
+    public void itemClick(int position) {
+        Log.d("Activity","Onclick "+ position);
+        showDetail(position);
     }
 }

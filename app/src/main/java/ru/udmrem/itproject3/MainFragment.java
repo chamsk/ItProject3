@@ -20,15 +20,9 @@ import android.view.ViewGroup;
 public class MainFragment extends Fragment {
 
 
+
     ContactReader contactReader;
     private int REQUEST_CODE_PERMISSION_READ_CONTACTS = 100;
-    OnItemClick onItemClick;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        onItemClick = (OnItemClick) context;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +36,7 @@ public class MainFragment extends Fragment {
         contactReader = new ContactReader(getActivity());
         checkPermission();
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.rv);
-        ListAdapter listAdapter = new ListAdapter();
+        ListAdapter listAdapter = new ListAdapter(getContext());
         listAdapter.addList(contactReader.getNames());
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(llm);
@@ -51,11 +45,6 @@ public class MainFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        onItemClick = null;
-    }
 
     //block permission
     public void checkPermission(){
@@ -87,4 +76,6 @@ public class MainFragment extends Fragment {
                 return;
         }
     }
+
+
 }
