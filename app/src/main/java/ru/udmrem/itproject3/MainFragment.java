@@ -1,6 +1,7 @@
 package ru.udmrem.itproject3;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ru.udmrem.itproject3.presenters.MainFragmentPresenter;
+
 
 public class MainFragment extends Fragment {
 
@@ -23,24 +26,28 @@ public class MainFragment extends Fragment {
 
     ContactReader contactReader;
     private int REQUEST_CODE_PERMISSION_READ_CONTACTS = 100;
+    MainFragmentPresenter presenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter = new MainFragmentPresenter(getContext());
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_main,null);
-        contactReader = new ContactReader(getActivity());
+        //contactReader = new ContactReader(getActivity());
         checkPermission();
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.rv);
-        ListAdapter listAdapter = new ListAdapter(getContext());
-        listAdapter.addList(contactReader.getNames());
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(llm);
-        recyclerView.setAdapter(listAdapter);
+        presenter.loadContacts();
+
+//        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.rv);
+//        ListAdapter listAdapter = new ListAdapter(getContext());
+//        listAdapter.addList(contactReader.getNames());
+//        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+//        recyclerView.setLayoutManager(llm);
+//        recyclerView.setAdapter(listAdapter);
 
         return v;
     }
@@ -52,7 +59,7 @@ public class MainFragment extends Fragment {
         Log.d("asd","asdg");
         if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
 
-            contactReader.readContacts();
+           // contactReader.readContacts();
 
 
             Log.d("PERMISSION","granted");
