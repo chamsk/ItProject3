@@ -7,7 +7,11 @@ import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 
+import ru.udmrem.itproject3.data.Contact;
+
 public class ContactReader {
+    Contact contact;
+
     ArrayList<String> names = new ArrayList<>();
     ArrayList<String> phones = new ArrayList<>();
     ArrayList<String> emails = new ArrayList<>();

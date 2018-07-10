@@ -1,7 +1,6 @@
 package ru.udmrem.itproject3;
 
-import android.app.Fragment;
-import android.content.Intent;
+
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements ListAdapter.OnIte
         detailFragment.setArguments(bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.container,detailFragment);
+        transaction.replace(R.id.container,detailFragment).addToBackStack(null);
         transaction.commit();
     }
 
