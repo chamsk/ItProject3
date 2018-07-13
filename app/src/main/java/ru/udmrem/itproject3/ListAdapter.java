@@ -10,13 +10,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import ru.udmrem.itproject3.data.Contact;
+
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
     public interface OnItemClick {
         public void itemClick(int position);
     }
 
 
-    List<String> list;
+    List<Contact> list;
     OnItemClick onItemClick;
 
     public ListAdapter(Context context) {
@@ -33,7 +35,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
 
     @Override
     public void onBindViewHolder(ListHolder holder, final int position) {
-        holder.textView.setText(list.get(position));
+        holder.textView.setText(list.get(position).getName());
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +49,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
     public int getItemCount() {
         return list.size();
     }
-    public void addList(List<String> list){
+    public void addList(List<Contact> list){
         this.list = list;
     }
 

@@ -16,10 +16,10 @@
         android:text="@string/dTvMail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dTvMail" />
+        app:layout_constraintTop_toBottomOf="@+id/dTvPhone" />
 
     <TextView
-        android:id="@+id/dTvPhone"
+        android:id="@+id/dTvEmail"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
@@ -27,13 +27,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/dTvName"
-        app:layout_constraintBottom_toTopOf="@+id/dTvMail"
+        app:layout_constraintBottom_toTopOf="@+id/dTvPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/dTvMail"
+        android:id="@+id/dTvPhone"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
@@ -42,5 +42,5 @@
         android:text="@string/dTvPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dTvPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/dTvEmail" />
 </android.support.constraint.ConstraintLayout>

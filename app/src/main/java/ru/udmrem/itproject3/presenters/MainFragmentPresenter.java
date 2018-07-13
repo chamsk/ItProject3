@@ -4,10 +4,11 @@ import android.content.Context;
 
 import java.util.List;
 
+import ru.udmrem.itproject3.MVP;
 import ru.udmrem.itproject3.data.Contact;
 import ru.udmrem.itproject3.data.LoaderContacts;
 
-public class MainFragmentPresenter {
+public class MainFragmentPresenter implements MVP.mainFragmentPresenter{
     Context context;
     LoaderContacts loaderContacts;
 
@@ -16,11 +17,14 @@ public class MainFragmentPresenter {
     }
 
 
+    @Override
     public void loadContacts(){
         loaderContacts = new LoaderContacts(context);
+        loaderContacts.loadLocalDB();
     }
-    public void getContacts(){
-
+    @Override
+    public List<Contact> getContacts(){
+        return loaderContacts.getContacts();
     }
 
 

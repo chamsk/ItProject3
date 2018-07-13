@@ -14,6 +14,9 @@ public interface ContactDao {
     @Insert
     void insertAll(Contact... contacts);
 
+    @Insert
+    void insert(Contact contact);
+
     // Удаление Contact из бд
     @Delete
     void delete(Contact contact);
@@ -23,7 +26,7 @@ public interface ContactDao {
     List<Contact> getAllPeople();
 
     // Получение всех Contacts из бд с условием
- //   @Query("SELECT * FROM contact WHERE favoriteColor LIKE :color")
- //   List<Contact> getAllPeopleWithFavoriteColor(String color);
+    @Query("SELECT * FROM contact WHERE id = :id")
+    Contact getContactById(int id);
 
 }
